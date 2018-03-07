@@ -21,11 +21,17 @@ const createUser = {
     }
 }
 
+//Exercise: write a mutation to `createProject`
+const createProject = {
+
+}
+
 const HackathonMutationRootType = new GraphQLObjectType({
     name: 'HackathonMutationScheme',
     description: 'Hackathon Schema Mutation Root',
     fields: () => ({
-        createUser
+        createUser,
+        // createProject //comment back in when exercise is complete
     })
 })
 

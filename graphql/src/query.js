@@ -4,17 +4,18 @@ const {
     GraphQLString,
     GraphQLList,
     GraphQLObjectType,
-    GraphQLNonNull
+    GraphQLNonNull,
+    GraphQLInt
 } = require('graphql');
 
 const user = {
     type: UserType,
     description: "A single user",
     args: {
-        id: {type: new GraphQLNonNull(GraphQLString)}
+        id: {type: new GraphQLNonNull(GraphQLInt)}
     },
     resolve: function(root, args) {
-        return Users.find(user => user.id === args.id)
+        return Users.find(user => user.id == args.id)
     }
 }
 
@@ -26,37 +27,23 @@ const users = {
     }
 }
 
+//Exercise: setup query for a `project` and `projects`
 const project = {
-    type: ProjectType,
-    description: "A single project by name",
-    args: {
-        name: {type: new GraphQLNonNull(GraphQLString)}
-    },
-    resolve: (root, args) => {
-        const matchedProject = Projects.find(project => project.name === args.name)
-        if(!matchedProject){
-            throw new Error(`No projects exists with this name: ${args.name}`);
-        }
-        return matchedProject
-    }
+    
 }
 
 const projects = {
-    type: new GraphQLList(ProjectType),
-    description: "List of all projects",
-    resolve: function() {
-        return Projects
-    }
+
 }
 
 const HackathonQueryRootType = new GraphQLObjectType({
     name: 'HackathonQuerySchema',
     description: "Hackathon Schema Query Root",
     fields: () => ({
+        user,
         users,
-        projects,
-        project,
-        user
+        // project, //comment back in when exercise is complete
+        // projects, //comment back in when exercise is complete
     })
 });
 

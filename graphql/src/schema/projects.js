@@ -7,20 +7,7 @@ let {
 const { Users } = require('../../../data')
 const UserType  = require('./users.js')
 
-const ProjectType = new GraphQLObjectType({
-    name: "Project",
-    description: "This represent a project",
-    fields: () => ({
-        id: {type: new GraphQLNonNull(GraphQLString)},
-        name: {type: new GraphQLNonNull(GraphQLString)},
-        description: {type: GraphQLString},
-        members: {
-            type: new GraphQLList(UserType),
-            resolve: function(project){
-                return project.members.map(memberId => Users.find(user => user.id === memberId))
-            }
-        }
-    })
-});
-  
+//Exercise: create scheme for a project 
+const ProjectType = {}
+
 module.exports = ProjectType
