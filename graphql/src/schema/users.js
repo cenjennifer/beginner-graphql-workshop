@@ -1,0 +1,17 @@
+let {
+    GraphQLString,
+    GraphQLObjectType,
+    GraphQLNonNull // This is used to create required fileds and arguments
+  } = require('graphql');
+
+const UserType = new GraphQLObjectType({
+    name: "User",
+    description: "This represent an user",
+    fields: () => ({
+        id: {type: new GraphQLNonNull(GraphQLString)},
+        firstName: {type: new GraphQLNonNull(GraphQLString)},
+        lastName: {type: new GraphQLNonNull(GraphQLString)}
+    })
+});
+
+module.exports = UserType
