@@ -1,7 +1,9 @@
-const { UserType } = require('./schema')
-const { Users } = require('../../data')
+const { UserType, ProjectType } = require('./schema')
+const { Users, Projects } = require('../../data')
 const {
+    GraphQLInt,
     GraphQLString,
+    GraphQLList,
     GraphQLObjectType,
     GraphQLNonNull
 } = require('graphql');
@@ -21,11 +23,28 @@ const createUser = {
     }
 }
 
+const createProject = {
+    type: ProjectType,
+    description: "Create a new project",
+    args: {
+        members: {type: new GraphQLList(GraphQLInt)},
+        name: {type: new GraphQLNonNull(GraphQLString)},
+        office: {type: new GraphQLList(GraphQLString)}
+    }, 
+    resolve: (root, args) => {
+        const createId = Projects.length + 1
+        const newProject = Object.assign({}, {...args}, {id: createId})
+        Projects.push(newProject)
+        return newProject
+    }
+}
+
 const HackathonMutationRootType = new GraphQLObjectType({
     name: 'HackathonMutationScheme',
     description: 'Hackathon Schema Mutation Root',
     fields: () => ({
-        createUser
+        createUser,
+        createProject
     })
 })
 

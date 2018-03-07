@@ -1,4 +1,5 @@
 let {
+    GraphQLInt,
     GraphQLString,
     GraphQLObjectType,
     GraphQLNonNull // This is used to create required fileds and arguments
@@ -8,7 +9,7 @@ const UserType = new GraphQLObjectType({
     name: "User",
     description: "This represent an user",
     fields: () => ({
-        id: {type: new GraphQLNonNull(GraphQLString)},
+        id: {type: new GraphQLNonNull(GraphQLInt)},
         firstName: {type: new GraphQLNonNull(GraphQLString)},
         lastName: {type: new GraphQLNonNull(GraphQLString)}
     })

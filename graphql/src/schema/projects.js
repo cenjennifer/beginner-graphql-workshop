@@ -1,4 +1,5 @@
 let {
+    GraphQLInt,
     GraphQLString,
     GraphQLList,
     GraphQLObjectType,
@@ -11,7 +12,7 @@ const ProjectType = new GraphQLObjectType({
     name: "Project",
     description: "This represent a project",
     fields: () => ({
-        id: {type: new GraphQLNonNull(GraphQLString)},
+        id: {type: new GraphQLNonNull(GraphQLInt)},
         name: {type: new GraphQLNonNull(GraphQLString)},
         description: {type: GraphQLString},
         members: {

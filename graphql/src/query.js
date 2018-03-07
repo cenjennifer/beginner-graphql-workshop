@@ -1,6 +1,7 @@
 const { UserType, ProjectType } = require('./schema')
 const { Users, Projects } = require('../../data')
 const {
+    GraphQLInt,
     GraphQLString,
     GraphQLList,
     GraphQLObjectType,
@@ -11,7 +12,7 @@ const user = {
     type: UserType,
     description: "A single user",
     args: {
-        id: {type: new GraphQLNonNull(GraphQLString)}
+        id: {type: new GraphQLNonNull(GraphQLInt)}
     },
     resolve: function(root, args) {
         return Users.find(user => user.id === args.id)
