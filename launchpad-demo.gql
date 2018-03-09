@@ -1,0 +1,79 @@
+Fork launchpad example below to play around:
+Start of Demo: https://launchpad.graphql.com/0vkpm4wz35
+End of Demo: https://launchpad.graphql.com/9j8jwl83nr
+
+1. Query all projects
+
+query {
+  projects {
+    id
+    name
+    members {
+      firstName
+      lastName
+    }
+  }
+}
+
+2. Query a user by id
+
+query {
+  user(id: 1){
+    firstName
+    lastName
+  }
+}
+
+3. Query projects for users in a project => show nested queries
+
+query {
+  project (name: "YARN") {
+    id
+    name
+    members {
+      firstName
+    	lastName
+      projects {
+        name
+      }
+    }
+  } 
+}
+
+4. Create a new projects
+
+mutation {
+  project (name":"Hello World", "members": [2,3], "office": "Norwalk") {
+    id
+  }
+}
+
+5. Create a fragment and use it in a query (update a pre-existing one created)
+
+fragment NameParts on User {
+  firstName
+  lastName
+}
+
+query {
+  user(id: 1){
+    ...NameParts
+  }
+}
+
+6. Add new office type field into schema
+
+7. Resolve the office field and use it in example query - Query all projects
+
+projects {
+  id
+  name
+  members {
+    firstName
+    lastName
+  }
+  offices {
+    name
+    address
+  }
+}
