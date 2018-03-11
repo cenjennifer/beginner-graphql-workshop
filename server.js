@@ -2,7 +2,7 @@
 /*	
 	Required modules {express and express-graphql} 
 	will be imported along with the schema object
-	from the schema.js file in src/schema.js 
+	from ./graphql/src
 */
 
 const express = require('express');
